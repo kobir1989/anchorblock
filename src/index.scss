@@ -9,3 +9,16 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+
+.active_link {
+  background-color: #f0f5fa;
+  border-radius: 1rem;
+}
+
+.side_bar_sm_Screens {
+  position: absolute;
+  top: 6.5rem;
+  @media screen and (min-width: 1024px) {
+    position: unset;
+  }
+}

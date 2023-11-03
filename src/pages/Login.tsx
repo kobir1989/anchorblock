@@ -4,6 +4,7 @@ import Button from '../components/Button'
 import AuthPageLayout from '../layoutes/AuthPageLayout'
 import { LoginInput, LoginError } from '../types/globalTypes'
 import { isStrongPassword, validateEmail } from '../utils/inputValidators'
+import { Link } from 'react-router-dom'
 
 const defaultValue = {
   email: '',
@@ -102,6 +103,17 @@ const Login = () => {
           </Button>
         </div>
       </form>
+      <div className='text-center mt-[2.18rem]'>
+        <p className='text-[#B0B7C3]'>
+          Don’t have an account yet?{' '}
+          <Link to='/signup'>
+            {' '}
+            <span className='text-[#377DFF] text-[1rem] font-[500]'>
+              Sign Up
+            </span>
+          </Link>
+        </p>
+      </div>
     </AuthPageLayout>
   )
 }

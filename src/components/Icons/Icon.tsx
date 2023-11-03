@@ -9,6 +9,11 @@ import SearchIcon from './svg/SearchIcon'
 import EmailIcon from './svg/EmailIcon'
 import LineIcon from './svg/LineIcon'
 import EyeCrossIcon from './svg/EyeCrossIcon'
+import UserIcon from './svg/UserIcon'
+import DashboardIcon from './svg/DashboardIcon'
+import SalesIcon from './svg/SalesIcon'
+import MenuIcon from './svg/MenuIcon'
+import MoreOptionsIcon from './svg/MoreOptionsIcon'
 
 interface IconMap {
   [name: string]: React.ElementType
@@ -25,7 +30,12 @@ const icons: IconMap = {
   searchIcon: SearchIcon,
   emailIcon: EmailIcon,
   lineIcon: LineIcon,
-  eyeCross: EyeCrossIcon
+  eyeCross: EyeCrossIcon,
+  userIcon: UserIcon,
+  dashboardIcon: DashboardIcon,
+  salesIcon: SalesIcon,
+  menuIcon: MenuIcon,
+  moreOptionsIcon: MoreOptionsIcon
 }
 
 interface IconsProps {

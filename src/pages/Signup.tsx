@@ -9,6 +9,7 @@ import {
   isValidName,
   validateEmail
 } from '../utils/inputValidators'
+import { Link } from 'react-router-dom'
 
 const defaultValue = {
   email: '',
@@ -159,10 +160,21 @@ const Signup = () => {
         {/* submit button */}
         <div className='mt-4 w-full'>
           <Button type='submit' variant='primary'>
-            Sign in
+            Sign up
           </Button>
         </div>
       </form>
+      <div className='text-center mt-[2.18rem]'>
+        <p className='text-[#B0B7C3]'>
+          Already have an account?
+          <Link to='/'>
+            {' '}
+            <span className='text-[#377DFF] text-[1rem] font-[500]'>
+              Sign in
+            </span>
+          </Link>
+        </p>
+      </div>
     </AuthPageLayout>
   )
 }

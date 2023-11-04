@@ -14,6 +14,10 @@ import DashboardIcon from './svg/DashboardIcon'
 import SalesIcon from './svg/SalesIcon'
 import MenuIcon from './svg/MenuIcon'
 import MoreOptionsIcon from './svg/MoreOptionsIcon'
+import FirstIcon from './svg/FirstIcon'
+import LastIcon from './svg/LastIcon'
+import PrevIcon from './svg/PrevIcon'
+import NextIcon from './svg/NextIcon'
 
 interface IconMap {
   [name: string]: React.ElementType
@@ -35,7 +39,11 @@ const icons: IconMap = {
   dashboardIcon: DashboardIcon,
   salesIcon: SalesIcon,
   menuIcon: MenuIcon,
-  moreOptionsIcon: MoreOptionsIcon
+  moreOptionsIcon: MoreOptionsIcon,
+  firstIcon: FirstIcon,
+  lastIcon: LastIcon,
+  prevIcon: PrevIcon,
+  nextIcon: NextIcon
 }
 
 interface IconsProps {

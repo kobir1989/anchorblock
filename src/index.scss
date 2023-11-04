@@ -15,10 +15,10 @@ body {
   border-radius: 1rem;
 }
 
-.side_bar_sm_Screens {
-  position: absolute;
-  top: 6.5rem;
-  @media screen and (min-width: 1024px) {
-    position: unset;
-  }
+.paginate_button_style {
+  @apply border border-[#F1F1F1] flex items-center justify-center rounded-[0.5rem] w-[2rem] h-[2rem];
+  line-height: 1;
+}
+.paginate_active {
+  @apply bg-[##2F80ED] text-white;
 }

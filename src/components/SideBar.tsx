@@ -19,11 +19,9 @@ const SideBar = () => {
           <NavLink
             to={link?.linkTo}
             className={({ isActive }) => (isActive ? 'active_link' : '')}
+            key={link?.id}
           >
-            <li
-              key={link?.id}
-              className='p-[1rem]  flex gap-[1rem] items-center text-[#A7AFBC] text-[0.87rem] font-[500]'
-            >
+            <li className='p-[1rem]  flex gap-[1rem] items-center text-[#A7AFBC] text-[0.87rem] font-[500]'>
               <span>
                 <Icon name={link?.iconName} />
               </span>

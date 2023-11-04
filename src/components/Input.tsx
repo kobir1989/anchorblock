@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import Icon from './Icons/Icon'
 
+//Input Props type
 interface InputProps {
   placeholder: string
   value: string
-  // eslint-disable-next-line no-unused-vars
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void
+  onChange(_e: React.ChangeEvent<HTMLInputElement>): void
   type: string
   iconName: string
   errorMessage?: string | null
@@ -38,9 +38,11 @@ const Input = ({
           type={showPassword ? 'text' : type}
           name={name}
         />
+        {/* input Icon */}
         <span className='absolute top-1/2 left-[1.2rem] -translate-y-[50%]'>
           <Icon name={iconName} />
         </span>
+        {/* eye icon for input type password */}
         {type === 'password' && (
           <span
             className='absolute top-1/2 right-[1.2rem] -translate-y-[50%] cursor-pointer z-10'
@@ -50,7 +52,7 @@ const Input = ({
           </span>
         )}
       </div>
-
+      {/* Error Message */}
       <span
         className={`${
           errorMessage !== '' ? 'visible mt-[1rem]' : 'invisible'

@@ -5,11 +5,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
     'prettier'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'prettier'],
+  plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
   rules: {
     // auto remove unsed variables
     'no-unused-vars': [1, { args: 'after-used', argsIgnorePattern: '^_' }],

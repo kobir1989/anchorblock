@@ -5,7 +5,7 @@
  `
  ***/
 // String Password Validator
-export const isStrongPassword = (password: string) => {
+export const isStrongPassword = (password: string): boolean => {
   const charRgx = /[A-Za-z]/ // characters regex
   const symbolRgx = /[$&+,:;=?@#|'<>.^*()%!-]/ // symbol regex
   const numberRgx = /[0-9]/ // number regex
@@ -28,12 +28,15 @@ export const isStrongPassword = (password: string) => {
  * @return {boolean}
  */
 
-export const validateEmail = (email: string) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )
+export const validateEmail = (email: string): boolean => {
+  // Regular expression pattern for email validation
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+  if (pattern.test(email.toLowerCase())) {
+    return true
+  } else {
+    return false
+  }
 }
 
 /***
@@ -43,7 +46,7 @@ export const validateEmail = (email: string) => {
  `
  ***/
 // user name validator
-export const isValidName = (name: string) => {
+export const isValidName = (name: string): boolean => {
   const symbolRegex = /[$&+,:;=?@#|'<>.^*()%!-]/ // symbol regex
   const numberRegex = /[0-9]/ // number regex
 

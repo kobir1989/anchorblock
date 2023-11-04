@@ -9,14 +9,14 @@
 body {
   font-family: 'Inter', sans-serif;
 }
-
+// used in sidebar component
 .active_link {
   background-color: #f0f5fa;
   border-radius: 1rem;
 }
-
+// used in pagination component
 .paginate_button_style {
-  @apply border border-[#F1F1F1] flex items-center justify-center rounded-[0.5rem] w-[2rem] h-[2rem];
+  @apply border border-[#F1F1F1] flex items-center justify-center rounded-[0.5rem] w-[2rem] h-[2rem] text-[0.75rem] font-[600];
   line-height: 1;
 }
 .paginate_active {

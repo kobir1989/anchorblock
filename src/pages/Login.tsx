@@ -27,7 +27,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   //onChange handler
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked } = e.target
     // check if the input type is checkbox
     const newValue = type === 'checkbox' ? checked : value
@@ -39,30 +39,39 @@ const Login = () => {
   }
 
   // Login Submit Form handler
-  const handleLoginFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLoginFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    let emailError = ''
+    let passwordError = ''
+
     // email validation
     if (!validateEmail(loginValue.email)) {
-      setError(prev => ({
-        ...prev,
-        email: 'Invalid credentials'
-      }))
+      emailError = 'Invalid credentials'
     }
-
-    // Check if there are any error in the errors object.
-    const hasError =
-      Object.values(error).some(err => err !== '') ||
-      Object.values(loginValue).some(val => val === '')
-    // Submit if aren't any error
-    if (!hasError) {
-      login({ email: loginValue.email, password: loginValue.password })
+    // password validation
+    // if (!isStrongPassword(loginValue.password)) {
+    //   passwordError = 'Invalid credentials'
+    // }
+    if (loginValue.password.length < 6) {
+      passwordError = 'Invalid credentials'
     }
+    // Update the error state after validations
+    setError({
+      email: emailError,
+      password: passwordError
+    })
+    // Check if there any error
+    if (emailError || passwordError) {
+      return
+    }
+    // submit form if there isn't any error.
+    login({ email: loginValue.email, password: loginValue.password })
   }
 
   useEffect(() => {
-    // if there are any response error, update the error state
+    // if there are any response error, update the error state.
     if (isError) {
-      setError(prev => ({
+      return setError(prev => ({
         ...prev,
         email: 'Invalid credentials',
         password: 'Invalid credentials'
@@ -71,7 +80,7 @@ const Login = () => {
     // if success navigate to '/user' and reset form
     if (isSuccess) {
       setLoginValue(defaultValue)
-      navigate('/users')
+      navigate('/')
     }
   }, [isError, isSuccess, loginResponse, navigate])
 

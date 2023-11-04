@@ -39,7 +39,7 @@ const Signup = () => {
   const navigate = useNavigate()
 
   //onChange handler
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked } = e.target
     // check if the input type is checkbox
     const newValue = type === 'checkbox' ? checked : value
@@ -51,45 +51,44 @@ const Signup = () => {
   }
 
   // Signup Form Submit Handler
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    // should not include number or symble
+
+    let emailError = ''
+    let passwordError = ''
+    let nameError = ''
+    let termsConditionsError = ''
+
+    // Name Validation, should not include number or symble
     if (!isValidName(signupValue.name)) {
-      setError(prev => ({
-        ...prev,
-        name: 'Please enter a valid Name.'
-      }))
+      nameError = 'Please enter a valid Name.'
     }
-    // check Valid Email
+    // Email Validation
     if (!validateEmail(signupValue.email)) {
-      setError(prev => ({
-        ...prev,
-        email: 'Please enter a valid email address.'
-      }))
+      emailError = 'Please enter a valid email address.'
     }
-    // Check Strong Password
+    // Password Validation, should include 'Number', 'Characters' and 'Symble'.
     if (!isStrongPassword(signupValue.password)) {
-      setError(prev => ({
-        ...prev,
-        password:
-          'Password must be > 7 characters and include letters, numbers, & symbols.'
-      }))
+      passwordError =
+        'Password must be > 7  and include letters, numbers, & symbols.'
     }
-    // Check termsConditions
+    // Validate termsConditions.
     if (!signupValue.termsConditions) {
-      setError(prev => ({
-        ...prev,
-        termsConditions: 'Please agree to the Terms & Conditions'
-      }))
+      termsConditionsError = 'Please agree to the Terms & Conditions'
     }
+    // Update the error state after validations.
+    setError({
+      name: nameError,
+      password: passwordError,
+      email: emailError,
+      termsConditions: termsConditionsError
+    })
     // Check if there are any error in the errors object.
-    const hasError =
-      Object.values(error).some(err => err !== '') ||
-      Object.values(signupValue).some(val => val === '')
-    // Submit if aren't any error
-    if (!hasError) {
-      signup({ email: signupValue.email, password: signupValue.password })
+    if (nameError || passwordError || emailError || termsConditionsError) {
+      return
     }
+    // Submit if aren't any error
+    signup({ email: signupValue.email, password: signupValue.password })
   }
 
   useEffect(() => {
@@ -104,7 +103,7 @@ const Signup = () => {
     // if success navigate to '/user' and reset form
     if (isSuccess) {
       setSignupValue(defaultValue)
-      navigate('/users')
+      navigate('/login')
     }
   }, [isError, isSuccess, navigate, signupResponse?.error])
 
@@ -194,7 +193,7 @@ const Signup = () => {
       <div className='text-center mt-[2.18rem]'>
         <p className='text-[#B0B7C3]'>
           Already have an account?
-          <Link to='/'>
+          <Link to='/login'>
             {' '}
             <span className='text-[#377DFF] text-[1rem] font-[500]'>
               Sign in

@@ -21,7 +21,9 @@ interface UsersResponseBody {
 export const usersApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getUsersList: builder.query<UsersResponseBody, unknown>({
-      query: (pageNumber: unknown) => `/api/users?page=${pageNumber}`
+      query: (pageNumber: unknown) => `/api/users?page=${pageNumber}`,
+      // keep unused data for 1 hour.
+      keepUnusedDataFor: 3600
     })
   })
 })

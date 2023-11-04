@@ -7,7 +7,7 @@ export const sidebarLinks = [
   },
   {
     id: 'list2',
-    linkTo: '/users',
+    linkTo: '/',
     lebel: 'Users',
     iconName: 'userIcon'
   },

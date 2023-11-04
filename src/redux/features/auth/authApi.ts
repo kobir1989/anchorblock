@@ -33,21 +33,22 @@ export const authApi = apiSlice.injectEndpoints({
         url: '/api/signup',
         method: 'POST',
         body: data
-      }),
-      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
-        try {
-          const response = await queryFulfilled
-          // save token to localstorage.
-          localStorage.setItem('token', JSON.stringify(response?.data?.token))
-          dispatch(
-            loggedIn({
-              token: response?.data?.token
-            })
-          )
-        } catch (error) {
-          //  console.log(error)
-        }
-      }
+      })
+      // ***** Sign up end points not sending any token ************
+      // async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const response = await queryFulfilled
+      //     // save token to localstorage.
+      //     localStorage.setItem('token', JSON.stringify(response?.data?.token))
+      //     dispatch(
+      //       loggedIn({
+      //         token: response?.data?.token
+      //       })
+      //     )
+      //   } catch (error) {
+      //     //  console.log(error)
+      //   }
+      // }
     })
   })
 })

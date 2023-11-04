@@ -4,6 +4,14 @@ import { useState } from 'react'
 import Pagination from './Pagination'
 import Skeleton from './Skeleton'
 
+interface User {
+  id: number
+  avatar: string
+  first_name: string
+  last_name: string
+  email: string
+}
+
 const Table = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const {
@@ -13,38 +21,34 @@ const Table = () => {
   } = useGetUsersListQuery(currentPage)
 
   // get total page from response
-  const totalPages = usersList?.total_pages
+  const totalPages = usersList?.total_pages ?? 10
 
   // handle page change
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number): void => {
     setCurrentPage(page)
   }
 
   // handle Prev page Pagination
-  const handlePrevPagination = () => {
+  const handlePrevPagination = (): void => {
     if (currentPage > 1) {
       setCurrentPage(prev => prev - 1)
     }
   }
 
   // handle next page Pagination
-  const handleNextPagination = () => {
+  const handleNextPagination = (): void => {
     if (totalPages && currentPage < totalPages) {
       setCurrentPage(prev => prev + 1)
     }
   }
 
-  // handle << button click (reset the page to 1)
-  const handleFirstPagination = () => {
-    if (currentPage > 1) {
-      setCurrentPage(1)
-    }
+  // handle << button click (skiping one page backward)
+  const handleBackwardPagination = (): void => {
+    setCurrentPage(prev => Math.max(1, prev - 2))
   }
-  // handle >> button click (reset the page to total page)
-  const handleLastPagination = () => {
-    if (totalPages && currentPage < totalPages) {
-      setCurrentPage(totalPages)
-    }
+  // handle >> button click (skiping one page forward)
+  const handleForwardPagination = (): void => {
+    setCurrentPage(prev => Math.min(totalPages, prev + 2))
   }
 
   return (
@@ -64,13 +68,15 @@ const Table = () => {
           {!isError &&
             !isLoading &&
             usersList &&
-            usersList?.data.map(user => (
+            usersList?.data.map((user: User) => (
               // table row
               <tr
                 className='text-[#4E5D78] text-[0.87rem] font-[600]'
                 key={user?.id}
               >
+                {/* column 1 */}
                 <td className='py-2 px-[3rem] w-[4rem]'>{user?.id}</td>
+                {/* column 2 */}
                 <td className='py-2 flex gap-[1.12rem] items-center'>
                   <div className='w-[60px] h-[60px]'>
                     <img
@@ -81,7 +87,9 @@ const Table = () => {
                   </div>{' '}
                   {user?.first_name + user?.last_name}
                 </td>
+                {/* column 3 */}
                 <td className='py-2'>{user?.email}</td>
+                {/* column 4 */}
                 <td className='py-2 w-[3rem] flex items-end justify-end'>
                   <Icon name='moreOptionsIcon' />
                 </td>
@@ -103,11 +111,11 @@ const Table = () => {
           <Pagination
             currentPage={currentPage}
             onPageChange={handlePageChange}
-            totalPages={totalPages || 1}
+            totalPages={totalPages}
             onPrev={handlePrevPagination}
             onNext={handleNextPagination}
-            onFirst={handleFirstPagination}
-            onLast={handleLastPagination}
+            onBackward={handleBackwardPagination}
+            onForward={handleForwardPagination}
           />
         </div>
       )}

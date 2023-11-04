@@ -19,6 +19,7 @@ const AuthPageLayout = ({
 }: AuthPageLayoutProps) => {
   return (
     <>
+      {/* auth page Navigation */}
       <nav className='px-[1.8rem] lg:px-[4rem] py-[1.4rem] flex items-center justify-between'>
         <div className='flex gap-2 items-center'>
           <Icon name='brandLogo' />{' '}
@@ -34,6 +35,7 @@ const AuthPageLayout = ({
           </select>
         </div>
       </nav>
+      {/* main Container */}
       <Container>
         <div className='mt-[4.25rem] max-w-[33.75rem] m-auto'>
           <div className='flex flex-col gap-[1rem] lg:gap-[1.87rem]'>

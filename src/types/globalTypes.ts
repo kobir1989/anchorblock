@@ -18,3 +18,7 @@ export interface SignupError extends LoginError {
   name: string
   termsConditions: string
 }
+
+export interface ChildrenType {
+  children: React.ReactNode
+}

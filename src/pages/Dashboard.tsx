@@ -1,5 +1,11 @@
+import MainLayout from '../layoutes/MainLayout'
+
 const Dashboard = () => {
-  return <div>Dashboard</div>
+  return (
+    <MainLayout>
+      <h1>Dashboard</h1>
+    </MainLayout>
+  )
 }
 
 export default Dashboard

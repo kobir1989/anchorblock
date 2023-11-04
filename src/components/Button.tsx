@@ -1,3 +1,4 @@
+// Button Props Type
 interface ButtonProps {
   children: React.ReactNode
   variant: 'primary' | 'secondary' // currently has 2 variant, it could be extended if needed.

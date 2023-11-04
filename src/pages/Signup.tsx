@@ -1,6 +1,6 @@
 import Input from '../components/Input'
 import AuthPageLayout from '../layoutes/AuthPageLayout'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '../components/Button'
 import Icon from '../components/Icons/Icon'
 import { SignupInput, SignupError } from '../types/globalTypes'
@@ -9,8 +9,10 @@ import {
   isValidName,
   validateEmail
 } from '../utils/inputValidators'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSignupMutation } from '../redux/features/auth/authApi'
 
+// initial form value
 const defaultValue = {
   email: '',
   name: '',
@@ -19,20 +21,29 @@ const defaultValue = {
 }
 
 const Signup = () => {
+  // form input state
   const [signupValue, setSignupValue] = useState<SignupInput>(defaultValue)
+  // error state
   const [error, setError] = useState<SignupError>({
     email: '',
     name: '',
     password: '',
     termsConditions: ''
   })
+  // RTK query signup mutaion hook. (POST)
+  const [signup, { data: signupResponse, isError, isLoading, isSuccess }] =
+    useSignupMutation()
+
+  // validator to check is password strong ro not. to update dash svg.
   const isStrong = isStrongPassword(signupValue.password)
+  const navigate = useNavigate()
 
   //onChange handler
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target
     // check if the input type is checkbox
     const newValue = type === 'checkbox' ? checked : value
+    // reset the error state when user start typing
     setSignupValue({ ...signupValue, [name]: newValue })
     if (value !== '') {
       setError({ email: '', name: '', password: '', termsConditions: '' })
@@ -77,9 +88,25 @@ const Signup = () => {
       Object.values(signupValue).some(val => val === '')
     // Submit if aren't any error
     if (!hasError) {
-      console.log(signupValue)
+      signup({ email: signupValue.email, password: signupValue.password })
     }
   }
+
+  useEffect(() => {
+    // if there are any response error, update the error state
+    if (isError) {
+      setError(prev => ({
+        ...prev,
+        email: signupResponse?.error || 'Something went wrong!',
+        password: signupResponse?.error || 'Something went wrong!'
+      }))
+    }
+    // if success navigate to '/user' and reset form
+    if (isSuccess) {
+      setSignupValue(defaultValue)
+      navigate('/users')
+    }
+  }, [isError, isSuccess, navigate, signupResponse?.error])
 
   return (
     <AuthPageLayout
@@ -159,8 +186,8 @@ const Signup = () => {
         </div>
         {/* submit button */}
         <div className='mt-4 w-full'>
-          <Button type='submit' variant='primary'>
-            Sign up
+          <Button disabled={isLoading} type='submit' variant='primary'>
+            {isLoading ? 'Submiting...' : 'Sign up'}
           </Button>
         </div>
       </form>

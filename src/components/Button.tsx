@@ -6,7 +6,12 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-const Button = ({ children, variant = 'primary', ...props }: ButtonProps) => {
+const Button = ({
+  children,
+  variant = 'primary',
+  disabled,
+  ...props
+}: ButtonProps) => {
   // style button based on variant
   let buttonClassName = ''
 
@@ -19,7 +24,9 @@ const Button = ({ children, variant = 'primary', ...props }: ButtonProps) => {
   return (
     <button
       {...props}
-      className={`w-full flex items-center justify-center gap-2 text-[1rem] font-[500] py-[1rem] lg:py-[1.25rem] px-[1.75rem] rounded-[1rem] hover:shadow-md transition duration-300 ease-in-out ${buttonClassName} button_animation`}
+      className={`w-full flex items-center justify-center gap-2 text-[1rem] font-[500] py-[1rem] lg:py-[1.25rem] px-[1.75rem] rounded-[1rem] hover:shadow-md transition duration-300 ease-in-out ${buttonClassName} button_animation ${
+        disabled ? 'bg-[#7f899b]' : ''
+      }`}
     >
       {children}
     </button>

@@ -10,9 +10,9 @@ const MainLayout = ({ children }: ChildrenType) => {
   const dispatch = useDispatch()
 
   return (
-    <main className='overflow-x-hidden relative lg:grid lg:grid-cols-12 gap-[2.37rem] max-w-[1280px] m-auto px-[1.8rem]'>
+    <main className='relative lg:grid lg:grid-cols-12 gap-[2.37rem] max-w-[1280px] m-auto px-[1.8rem] overflow-hidden h-[100vh]'>
       {/* side bar */}
-      <aside className='hidden lg:grid  bg-white top-[6.5rem]  w-[15rem] col-span-3'>
+      <aside className='hidden lg:grid  bg-white top-[6.5rem] w-[15rem] col-span-3'>
         <SideBar />
       </aside>
       <section className='col-span-9 w-full'>
@@ -23,7 +23,7 @@ const MainLayout = ({ children }: ChildrenType) => {
       </section>
       {/* sidebar drawer for small screen */}
       <aside
-        className={`lg:hidden absolute top-0 left-0 bg-[#242424c4] z-[50] w-full h-full transition-all duration-200 ease-in ${
+        className={`lg:hidden absolute top-0 left-0 bg-[#242424c4] z-[50] w-[100vw] transition-all duration-200 ease-in h-[100vh] ${
           showSidebar ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
         onClick={() => dispatch(closeSidebar())}

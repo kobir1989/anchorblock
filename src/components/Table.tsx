@@ -53,14 +53,14 @@ const Table = () => {
 
   return (
     <div>
-      <table className='w-full'>
+      <table className='w-full border-spacing-x-px'>
         {/* table head */}
         <thead className='bg-[#FAFBFC]'>
           <tr className='text-[#4E5D78] text-[0.75rem] font-[600]'>
             <th className='py-[0.95rem] px-[3rem] text-start'>#ID</th>
-            <th className='py-[0.95rem] text-start'>USER</th>
-            <th className='py-[0.95rem]  text-start'>EMAIL</th>
-            <th className='py-[0.95rem]  text-start'>OPTIONS</th>
+            <th className='py-[0.95rem] px-6 text-start'>USER</th>
+            <th className='py-[0.95rem] px-6 text-start'>EMAIL</th>
+            <th className='py-[0.95rem] pl-6 pr-[3rem] text-start'>OPTIONS</th>
           </tr>
         </thead>
         <tbody>
@@ -77,7 +77,7 @@ const Table = () => {
                 {/* column 1 */}
                 <td className='py-2 px-[3rem] w-[4rem]'>{user?.id}</td>
                 {/* column 2 */}
-                <td className='py-2 flex gap-[1.12rem] items-center'>
+                <td className='py-2 px-6 flex gap-[1.12rem] items-center w-[15rem]'>
                   <div className='w-[60px] h-[60px]'>
                     <img
                       src={user?.avatar}
@@ -88,9 +88,9 @@ const Table = () => {
                   {user?.first_name + user?.last_name}
                 </td>
                 {/* column 3 */}
-                <td className='py-2'>{user?.email}</td>
+                <td className='py-2 px-6 w-full'>{user?.email}</td>
                 {/* column 4 */}
-                <td className='py-2 w-[3rem] flex items-end justify-end'>
+                <td className='py-2 px-6 w-[5rem]'>
                   <Icon name='moreOptionsIcon' />
                 </td>
               </tr>

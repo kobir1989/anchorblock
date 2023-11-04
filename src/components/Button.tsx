@@ -16,9 +16,9 @@ const Button = ({
   // style button based on variant
   let buttonClassName = ''
 
-  if (variant === 'secondary') {
+  if (variant === 'secondary' && !disabled) {
     buttonClassName = 'bg-[#F0F5FA] text-[#8A94A6] '
-  } else if (variant === 'primary') {
+  } else if (variant === 'primary' && !disabled) {
     buttonClassName = 'bg-[#377DFF] text-white hover:bg-[#2a72f8]'
   }
 
@@ -26,7 +26,7 @@ const Button = ({
     <button
       {...props}
       className={`w-full flex items-center justify-center gap-2 text-[1rem] font-[500] py-[1rem] lg:py-[1.25rem] px-[1.75rem] rounded-[1rem] hover:shadow-md transition duration-300 ease-in-out ${buttonClassName} button_animation ${
-        disabled ? 'bg-[#7f899b]' : ''
+        disabled ? 'bg-[#9aaec2] text-white' : ''
       }`}
     >
       {children}

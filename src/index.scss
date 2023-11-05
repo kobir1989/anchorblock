@@ -22,3 +22,6 @@ body {
 .paginate_active {
   @apply bg-[##2F80ED] text-white;
 }
+.error_input_shadow {
+  box-shadow: 0px 6px 8px 0px rgba(255, 86, 48, 0.1);
+}

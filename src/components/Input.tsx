@@ -31,7 +31,11 @@ const Input = ({
     <div>
       <div className='relative transition-all duration-300 ease'>
         <input
-          className='focus:outline-none focus:border-sky-[#cbdbfa] focus:ring-1 focus:ring-sky-500 w-full relative rounded-[1rem] bg-white px-[3.18rem] py-[1rem] lg:py-[1.25rem] border border-[#F3F3F3]'
+          className={`focus:outline-none focus:border-sky-[#cbdbfa] focus:ring-1 focus:ring-sky-500 w-full relative rounded-[1rem] bg-white px-[3.18rem] py-[1rem] lg:py-[1.25rem] ${
+            errorMessage
+              ? 'border border-[#FF5630] error_input_shadow'
+              : 'border border-[#F3F3F3]'
+          }`}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
